@@ -37,5 +37,24 @@ class UsersController < ApplicationController
     
   end
 
+
+  def update
+    url_username = params.fetch("path_username")
+    matching_usernames = User.where({ :username => url_username })
+
+    @the_user = matching_usernames.at(0)
+
+    @the_user.username = params.fetch("input_username")
+ 
+    if @the_user.valid?
+      @the_user.save
+      redirect_to("/users/#{@the_user.id}", { :notice => "User updated successfully." })
+    else
+      redirect_to("/users/#{@the_user.id}", { :notice => "User failed to update successfully." })
+    end
+  end
+
+ 
+
   
 end
