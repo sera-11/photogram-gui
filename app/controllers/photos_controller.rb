@@ -48,4 +48,16 @@ class PhotosController < ApplicationController
       redirect_to("/photos/#{@the_photo.id}", { :notice => "Photo failed to update successfully." })
     end
   end
+
+  def destroy
+
+    the_id = params.fetch("path_id")
+    @the_photo = Photo.find(the_id)
+
+    @the_photo.destroy
+
+    redirect_to("/photos", { :notice => "Photo deleted successfully."} )
+
+  end
+
 end
