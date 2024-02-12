@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       render({ :template => "user_templates/show"})
     end
     
-
-    
   end
+
+  
 end
