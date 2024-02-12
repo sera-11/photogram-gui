@@ -20,4 +20,20 @@ class PhotosController < ApplicationController
     end
   end
 
+  def show
+    # Paramters: { "path_username" => username }
+    id = params.fetch("path_id")
+    matching_records = User.where({ :id => id })
+
+    @the_photo = matching_records.at(0) 
+    #OR
+    #@the_user = matching_usernames.first
+
+    if @the_photo == nil
+      redirect_to("/")
+    else
+      render({ :template => "photo_templates/show"})
+    end
+  end
+
 end
